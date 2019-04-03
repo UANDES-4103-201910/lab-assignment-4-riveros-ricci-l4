@@ -9,13 +9,11 @@ class Ticket < ApplicationRecord
 
   def prevent_creation_after_start_date
     associated_event = TicketType.where(id: ticket_type_id)
-    result = Event.select(:start_date).where(id: associated_event[0]['id']) unless associated_event.nil?
+    result = !associated_event.nil? ? Event.select(:start_date).where(id: associated_event[0]['id']) : nil
     if !result.nil? && !result[0].nil? && Date.today > result[0]['start_date']
       throw :abort
     end
   end
 
-  def prevent_selling_expired_ticket
-    puts 'TEST'
-  end
+  def prevent_selling_expired_ticket; end # Same as prevent creation?
 end

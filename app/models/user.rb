@@ -4,7 +4,7 @@ class User < ApplicationRecord
                     format: { with: /\A([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})\z/i }
   validates :phone_number, length: { in: 9..12 }
   validates :password, presence: true, length: { in: 8..12 },
-                       format: { with: /\A[a-zA-Z0-9]*\z//i }
+                       format: { with: /\A[a-zA-Z0-9]*\z/i }
 
 
 end
